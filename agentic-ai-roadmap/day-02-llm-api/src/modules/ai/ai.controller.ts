@@ -8,7 +8,11 @@ export async function chat(req: Request, res: Response) {
         return res.status(400).json({ message: "Validation failed", errors: result.error.flatten(), });
     }
     try {
+        const startTime = Date.now();
         const answer = await generateChatResponse(result.data.message);
+        const duration = Date.now() - startTime;
+
+        console.log(`AI response time: ${duration}ms`);
         return res.status(200).json({ answer, });
     } catch (error) {
         console.error("Gemini API error:", error);

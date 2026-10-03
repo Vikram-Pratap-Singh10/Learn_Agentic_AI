@@ -1,5 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 import { env } from "../../config/env.js";
+import {
+  PROGRAMMING_SYSTEM_PROMPT,
+} from "./programming.prompt.js";
 
 const ai = new GoogleGenAI({
   apiKey: env.googleApiKey,
@@ -24,7 +27,8 @@ export async function askProgrammingAssistant(
     model: env.googleGeminiModel,
     contents: message,
     config: {
-      systemInstruction: SYSTEM_INSTRUCTION,
+    //   systemInstruction: SYSTEM_INSTRUCTION,
+      systemInstruction: PROGRAMMING_SYSTEM_PROMPT,
     },
   });
 
